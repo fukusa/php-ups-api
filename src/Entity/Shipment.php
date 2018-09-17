@@ -115,6 +115,11 @@ class Shipment
     private $numOfPiecesInShipment;
 
     /**
+     * @var ShipmentRatingOptions
+     */
+    private $shipmentRatingOptions;
+
+    /**
      * @var DeliveryTimeInformation
      */
     private $deliveryTimeInformation;
@@ -142,6 +147,22 @@ class Shipment
     public function setShipmentIndicationType(ShipmentIndicationType $shipmentIndicationType)
     {
         $this->shipmentIndicationType = $shipmentIndicationType;
+    }
+
+    /**
+     * @return ShipmentRatingOptions
+     */
+    public function getShipmentRatingOptions()
+    {
+        return $this->shipmentRatingOptions;
+    }
+
+    /**
+     * @param ShipmentRatingOptions $shipmentRatingOptions
+     */
+    public function setShipmentRatingOptions(ShipmentRatingOptions $shipmentRatingOptions)
+    {
+        $this->shipmentRatingOptions = $shipmentRatingOptions;
     }
 
     /**
