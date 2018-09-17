@@ -13,6 +13,9 @@ use Ups\NodeInterface;
 class ShipmentRatingOptions extends RateInformation
 {
 
+    /** @var boolean */
+    private $userLevelDiscountIndicator;
+
     /**
      * @param null|DOMDocument $document
      *
@@ -34,6 +37,34 @@ class ShipmentRatingOptions extends RateInformation
             $node->appendChild($document->createElement('RateChartIndicator'));
         }
 
+        if ($this->getRateChartIndicator()) {
+            $node->appendChild($document->createElement('RateChartIndicator'));
+        }
+
+        if ($this->getUserLevelDiscountIndicator()) {
+            $node->appendChild($document->createElement('UserLevelDiscountIndicator'));
+        }
+
         return $node;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getUserLevelDiscountIndicator()
+    {
+        return $this->userLevelDiscountIndicator;
+    }
+
+    /**
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setUserLevelDiscountIndicator($value)
+    {
+        $this->userLevelDiscountIndicator = $value;
+
+        return $this;
     }
 }
