@@ -47,6 +47,11 @@ class Product implements NodeInterface
     private $unit;
 
     /**
+     * @var ProductWeight
+     */
+    private $productWeight;
+
+    /**
      * @param null|object $attributes
      */
     public function __construct($attributes = null)
@@ -63,6 +68,9 @@ class Product implements NodeInterface
             }
             if (isset($attributes->OriginCountryCode)) {
                 $this->setOriginCountryCode($attributes->OriginCountryCode);
+            }
+            if (isset($attributes->ProductWeight)) {
+                $this->setProductWeight($attributes->ProductWeight);
             }
         }
     }
@@ -97,8 +105,31 @@ class Product implements NodeInterface
         if ($this->getOriginCountryCode() !== null) {
             $node->appendChild($document->createElement('OriginCountryCode', $this->getOriginCountryCode()));
         }
+        if ($this->getProductWeight() !== null) {
+            $node->appendChild($this->getProductWeight()->toNode($document));
+        }
 
         return $node;
+    }
+
+    /**
+     * @return ProductWeight
+     */
+    public function getProductWeight()
+    {
+        return $this->productWeight;
+    }
+
+    /**
+     * @param ProductWeight $productWeight
+     * @return $this
+     * @throws \Exception
+     */
+    public function setProductWeight($productWeight)
+    {
+        $this->productWeight = $productWeight;
+
+        return $this;
     }
 
     /**

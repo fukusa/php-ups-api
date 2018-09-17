@@ -132,6 +132,11 @@ class InternationalForms implements NodeInterface
     private $products = [];
 
     /**
+     * @var Contact[]
+     */
+    private $contacts = [];
+
+    /**
      * @var Discount
      */
     private $discount;
@@ -350,8 +355,31 @@ class InternationalForms implements NodeInterface
         foreach ($this->products as $product) {
             $node->appendChild($product->toNode($document));
         }
+        foreach ($this->contacts as $contact) {
+            $node->appendChild($contact->toNode($document));
+        }
 
         return $node;
+    }
+
+    /**
+     * @return array
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    /**
+     * @param Contact $contact
+     * @return $this
+     * @throws \Exception
+     */
+    public function addContact(Contact $contact)
+    {
+        $this->contacts[] = $contact;
+
+        return $this;
     }
 
     /**
